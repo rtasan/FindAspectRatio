@@ -118,8 +118,7 @@ class Finder:
         mo_perc = ms / height #縦の占有率(百分率)
         
         result = str(round(mo_perc*100, 1)) + '%'
-        cv2.imshow('image', fin_cv2)
-        cv2.imwrite("tmp.png",fin_cv2)
+        
         return result    
 
 

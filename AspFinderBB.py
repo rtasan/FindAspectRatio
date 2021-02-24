@@ -17,7 +17,7 @@ import wx.xrc
 class MainFrame ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Aspect&BB Finder", pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Aspect & BB Finder", pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -27,7 +27,7 @@ class MainFrame ( wx.Frame ):
 		self.AspectFinder = wx.Panel( self.Tabs, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		AspSizer = wx.BoxSizer( wx.VERTICAL )
 
-		self.AspMsg1 = wx.StaticText( self.AspectFinder, wx.ID_ANY, u"クリップボードに画像をコピーしてから実行", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.AspMsg1 = wx.StaticText( self.AspectFinder, wx.ID_ANY, u"クリップボードに画像をコピーしてから実行してください\n画像のアスペクト比を表示します", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.AspMsg1.Wrap( -1 )
 
 		AspSizer.Add( self.AspMsg1, 0, wx.ALL, 5 )
@@ -44,11 +44,11 @@ class MainFrame ( wx.Frame ):
 		self.AspectFinder.SetSizer( AspSizer )
 		self.AspectFinder.Layout()
 		AspSizer.Fit( self.AspectFinder )
-		self.Tabs.AddPage( self.AspectFinder, u"AspectFinder", False )
+		self.Tabs.AddPage( self.AspectFinder, u"AspectFinder", True )
 		self.BlackBar = wx.Panel( self.Tabs, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		BBsizer = wx.BoxSizer( wx.VERTICAL )
 
-		self.BBMsg1 = wx.StaticText( self.BlackBar, wx.ID_ANY, u"クリップボードに画像をコピーしてから実行", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.BBMsg1 = wx.StaticText( self.BlackBar, wx.ID_ANY, u"クリップボードに画像をコピーしてから実行してください\n映像の縦方向の画面占有率を表示します", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.BBMsg1.Wrap( -1 )
 
 		BBsizer.Add( self.BBMsg1, 0, wx.ALL, 5 )
@@ -56,7 +56,7 @@ class MainFrame ( wx.Frame ):
 		self.BBBtn1 = wx.Button( self.BlackBar, wx.ID_ANY, u"実行", wx.DefaultPosition, wx.DefaultSize, 0 )
 		BBsizer.Add( self.BBBtn1, 0, wx.ALL, 5 )
 
-		self.BBMsg2 = wx.StaticText( self.BlackBar, wx.ID_ANY, u"黒帯: --%", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.BBMsg2 = wx.StaticText( self.BlackBar, wx.ID_ANY, u"占有率 : --%", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.BBMsg2.Wrap( -1 )
 
 		BBsizer.Add( self.BBMsg2, 0, wx.ALL, 5 )
@@ -65,7 +65,7 @@ class MainFrame ( wx.Frame ):
 		self.BlackBar.SetSizer( BBsizer )
 		self.BlackBar.Layout()
 		BBsizer.Fit( self.BlackBar )
-		self.Tabs.AddPage( self.BlackBar, u"BlackBarFinder", True )
+		self.Tabs.AddPage( self.BlackBar, u"BlackBarFinder", False )
 
 		MainSizer.Add( self.Tabs, 1, wx.EXPAND |wx.ALL, 5 )
 

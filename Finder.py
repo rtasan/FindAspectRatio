@@ -2,6 +2,7 @@ from PIL import ImageGrab, Image
 import numpy as np
 import cv2
 import collections
+import statistics
 
 
 def get_aspect(m, n):
@@ -72,9 +73,11 @@ class Finder:
         blank = np.zeros((height+2, width+2))
 
         #輪郭検出の前処理
+        show = cv2.resize(new_cv2,(1280, 720))
+        #cv2.imshow('ima',show)
         new_gray = cv2.cvtColor(new_cv2, cv2.COLOR_BGR2GRAY)
-        #im_blur = cv2.GaussianBlur(new_gray, (11, 11), 0)
-        th1 = cv2.threshold(new_gray, 5, 255, cv2.THRESH_BINARY_INV)[1]
+        #new_gray = cv2.GaussianBlur(new_gray, (11, 11), 0)
+        th1 = cv2.threshold(new_gray, 2, 255, cv2.THRESH_BINARY_INV)[1]
 
         #色を反転
         im_not = cv2.bitwise_not(th1)
@@ -85,11 +88,13 @@ class Finder:
         blank_pil.paste(bk_pil, (1,1))
         fin_cv2 = pil2cv(blank_pil)
 
+         
+
         #輪郭検出
-        contours = cv2.findContours(fin_cv2, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
+        contours = cv2.findContours(fin_cv2, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
 
         # 検知したエリアを面積でフィルター
-        th_area = new_cv2.shape[0] * new_cv2.shape[1] / 50
+        th_area = new_cv2.shape[0] * new_cv2.shape[1] / 25
         contours_large = list(filter(lambda c:cv2.contourArea(c) > th_area, contours))
 
         #頂点の高さ情報をリストに
@@ -110,14 +115,28 @@ class Finder:
                 add_big.append(cnt_common[i][0])
             elif cnt_common[i][0]<lim:
                 add_small.append(cnt_common[i][0])
-            
+
+        #リスト内をフィルター
+         
+
+        
+        cv2.imwrite('tmp.png',fin_cv2)
+        fin_cv2 = cv2.resize(fin_cv2,(1280, 720))
+        #cv2.imshow('image',fin_cv2)
+        
+        t_big = statistics.mode(add_big)
+        t_small = statistics.mode(add_small)
+        """print(add_big)
+        print(add_small)
+        print(statistics.mode(add_big))
+        print(statistics.mode(add_small))"""
 
         #映像スペースを計算 
 
-        ms = (round(np.mean(add_big))) - (round(np.mean(add_small)))
-        mo_perc = ms / height #縦の占有率(百分率)
+        ms = (round(np.mean(t_big))) - (round(np.mean(t_small)))
+        mo_perc = ms / (height+2) #縦の占有率(百分率)
         
-        result = str(round(mo_perc*100, 1)) + '%'
+        result = '占有率: ' + str(round(mo_perc*100, 1)) + '%'
         
         return result    
 

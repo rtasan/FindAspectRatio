@@ -208,7 +208,7 @@
                                             <property name="gripper">0</property>
                                             <property name="hidden">0</property>
                                             <property name="id">wxID_ANY</property>
-                                            <property name="label">クリップボードに画像をコピーしてから実行</property>
+                                            <property name="label">クリップボードに画像をコピーしてから実行してください</property>
                                             <property name="markup">0</property>
                                             <property name="max_size"></property>
                                             <property name="maximize_button">0</property>
@@ -466,7 +466,7 @@
                                             <property name="gripper">0</property>
                                             <property name="hidden">0</property>
                                             <property name="id">wxID_ANY</property>
-                                            <property name="label">クリップボードに画像をコピーしてから実行</property>
+                                            <property name="label">クリップボードに画像をコピーしてから実行してください&#x0A;映像の縦方向の画面占有率を表示します</property>
                                             <property name="markup">0</property>
                                             <property name="max_size"></property>
                                             <property name="maximize_button">0</property>
@@ -600,7 +600,7 @@
                                             <property name="gripper">0</property>
                                             <property name="hidden">0</property>
                                             <property name="id">wxID_ANY</property>
-                                            <property name="label">黒帯: --%</property>
+                                            <property name="label">占有率 : --%</property>
                                             <property name="markup">0</property>
                                             <property name="max_size"></property>
                                             <property name="maximize_button">0</property>

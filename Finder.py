@@ -112,33 +112,26 @@ class Finder:
         lim = height / 2 #1080時、540
         for i in range(len(cnt_common)):
             if cnt_common[i][0]>lim:
-                add_big.append(cnt_common[i][0])
+                add_big.append(cnt_common[i][0]-1)
             elif cnt_common[i][0]<lim:
-                add_small.append(cnt_common[i][0])
+                add_small.append(cnt_common[i][0]-1)
 
         #リスト内をフィルター
-         
-
         
-        #cv2.imwrite('tmp.png',fin_cv2)
         fin_cv2 = cv2.resize(fin_cv2,(1280, 720))
-        #cv2.imshow('image',fin_cv2)
-        
+                
         t_big = statistics.mode(add_big)
         t_small = statistics.mode(add_small)
-        """print(add_big)
-        print(add_small)
-        print(statistics.mode(add_big))
-        print(statistics.mode(add_small))"""
-
+        
+        print(t_small)
         #映像スペースを計算 
 
         ms = (round(np.mean(t_big))) - (round(np.mean(t_small)))
         mo_perc = ms / (height+2) #縦の占有率(百分率)
         
-        result = '占有率: ' + str(round(mo_perc*100, 1)) + '%'
+        result = '占有率: ' + str(round(mo_perc*100, 1)) + '%' + '\nピクセル(px): ' + str(t_small)
         
-        return result    
+        return result
 
 
 

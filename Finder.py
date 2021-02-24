@@ -120,7 +120,7 @@ class Finder:
          
 
         
-        cv2.imwrite('tmp.png',fin_cv2)
+        #cv2.imwrite('tmp.png',fin_cv2)
         fin_cv2 = cv2.resize(fin_cv2,(1280, 720))
         #cv2.imshow('image',fin_cv2)
         

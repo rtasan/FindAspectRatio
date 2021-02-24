@@ -3,6 +3,7 @@
 import wx
 import AspFinderBB
 
+
 # Implementing MainFrame
 class AspBBFinderMainFrame( AspFinderBB.MainFrame ):
 	def __init__( self, parent ):

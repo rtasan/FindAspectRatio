@@ -3,7 +3,6 @@ import numpy as np
 import cv2
 import collections
 
-
 def get_aspect(m, n):
     w = m
     h = n

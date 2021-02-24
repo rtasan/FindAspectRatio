@@ -104,10 +104,11 @@ class Finder:
         cnt_common = cnt.most_common()
         add_big = []
         add_small = []
+        lim = height / 2 #1080時、540
         for i in range(len(cnt_common)):
-            if cnt_common[i][0]>540:
+            if cnt_common[i][0]>lim:
                 add_big.append(cnt_common[i][0])
-            elif cnt_common[i][0]<540:
+            elif cnt_common[i][0]<lim:
                 add_small.append(cnt_common[i][0])
             
 
@@ -117,6 +118,8 @@ class Finder:
         mo_perc = ms / height #縦の占有率(百分率)
         
         result = str(round(mo_perc*100, 1)) + '%'
+        cv2.imshow('image', fin_cv2)
+        cv2.imwrite("tmp.png",fin_cv2)
         return result    
 
 

@@ -20,7 +20,11 @@ class AspBBFinderMainFrameChild( AspBBFinderMainFrame ):
 		# TODO: Implement BBBtn1OnButtonClick
 		try:
 			res = self.finder.BBFinder()
+		except TypeError:           
+			res = 'クリップボードに画像がありません'
+			self.BBMsg2.SetLabel(res)
 		except Exception as e:
 			res = 'Error: ' + str(e) +'\n暗いシーンでないか確認してください'
+			self.BBMsg2.SetLabel(res)
 		self.BBMsg2.SetLabel(res)
 		
